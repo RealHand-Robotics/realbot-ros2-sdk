@@ -43,7 +43,7 @@ Examples:
   ./install.sh
   ./install.sh --install-ros
   ./install.sh --install-ros --workspace ~/realhand_ros2_ws
-  ./install.sh --local-sdk ~/Downloads/realbot-python-sdk-main
+  ./install.sh --local-sdk ~/Downloads/realbot-python-sdk
 EOF
 }
 
@@ -279,10 +279,14 @@ copy_repo_to_workspace() {
         "${REPO_DIR}/examples" \
         "${REPO_DIR}/launch" \
         "${REPO_DIR}/resource" \
-        "${REPO_DIR}/scripts" \
         "${REPO_DIR}/src" \
         "${REPO_DIR}/test" \
         "${dest}/"
+
+    # The optional Docker helper directory is not required for installation.
+    if [[ -d "${REPO_DIR}/scripts" ]]; then
+        cp -a "${REPO_DIR}/scripts" "${dest}/"
+    fi
 
     log "Building workspace ${workspace_dir}"
     (

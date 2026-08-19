@@ -47,18 +47,25 @@ workspace unless ROS2 is installed inside that conda environment.
 
 ### Automated Install
 
-From this checkout, the install script can check/install dependencies, install
-the Python SDK, and optionally build a fresh workspace:
+Clone the ROS 2 SDK, then run its install script to check/install dependencies,
+install the Python SDK, and optionally build a fresh workspace:
+
+```bash
+git clone https://github.com/RealHand-Robotics/realbot-ros2-sdk.git
+cd realbot-ros2-sdk
+```
+
+Then use one of the following commands:
 
 ```bash
 # If ROS2 is already installed:
-./install.sh --workspace ~/realhand_ros2_ws
+bash ./install.sh --workspace ~/realhand_ros2_ws
 
 # If ROS2 is not installed yet:
-./install.sh --install-ros --workspace ~/realhand_ros2_ws
+bash ./install.sh --install-ros --workspace ~/realhand_ros2_ws
 
 # For optional A7 Lite kinetix support:
-./install.sh --with-arm --workspace ~/realhand_ros2_ws
+bash ./install.sh --with-arm --workspace ~/realhand_ros2_ws
 ```
 
 The automated installer copies this repository into
@@ -69,7 +76,7 @@ remove the old workspace first:
 
 ```bash
 rm -rf ~/realhand_ros2_ws
-./install.sh --install-ros --workspace ~/realhand_ros2_ws
+bash ./install.sh --install-ros --workspace ~/realhand_ros2_ws
 ```
 
 To keep the existing workspace, choose a different `--workspace` path instead.
@@ -78,13 +85,13 @@ The install script defaults to Humble on Ubuntu 22.04 and Jazzy on Ubuntu
 24.04. Override it explicitly when needed, for example:
 
 ```bash
-ROS_DISTRO=jazzy ./install.sh --install-ros --workspace ~/realhand_ros2_ws
+ROS_DISTRO=jazzy bash ./install.sh --install-ros --workspace ~/realhand_ros2_ws
 ```
 
 For local Python SDK development, use an editable checkout:
 
 ```bash
-./install.sh --local-sdk /path/to/realbot-python-sdk --workspace ~/realhand_ros2_ws
+bash ./install.sh --local-sdk /path/to/realbot-python-sdk --workspace ~/realhand_ros2_ws
 ```
 
 ### Manual Prerequisites
@@ -145,12 +152,12 @@ python3 -m pip install --upgrade pip
 python3 -m pip install git+https://github.com/RealHand-Robotics/realbot-python-sdk.git
 
 # Or, for local Python SDK development, install an editable checkout instead:
-# python3 -m pip install -e /path/to/realbot-python-sdk-main
+# python3 -m pip install -e /path/to/realbot-python-sdk
 
-# Clone this repository, or copy your existing checkout into the workspace.
-mkdir -p realhand_ros2_ws/src
-cd realhand_ros2_ws/src
-cp -a /path/to/your-realhand-ros2-checkout .
+# Clone the ROS 2 SDK into the workspace source directory.
+mkdir -p ~/realhand_ros2_ws/src
+cd ~/realhand_ros2_ws/src
+git clone https://github.com/RealHand-Robotics/realbot-ros2-sdk.git
 cd ..
 
 colcon build --symlink-install
@@ -182,7 +189,7 @@ does not require the kinetix extra.
 python3 -m pip install "realhand[kinetix] @ git+https://github.com/RealHand-Robotics/realbot-python-sdk.git"
 
 # Or, for local Python SDK development:
-# python3 -m pip install -e "/path/to/realbot-python-sdk-main[kinetix]"
+# python3 -m pip install -e "/path/to/realbot-python-sdk[kinetix]"
 ```
 
 On Ubuntu 24.04, add `--break-system-packages --ignore-installed` to these
