@@ -84,7 +84,7 @@ ROS_DISTRO=jazzy ./install.sh --install-ros --workspace ~/realhand_ros2_ws
 For local Python SDK development, use an editable checkout:
 
 ```bash
-./install.sh --local-sdk /path/to/realbot-python-sdk-no-a7 --workspace ~/realhand_ros2_ws
+./install.sh --local-sdk /path/to/realbot-python-sdk --workspace ~/realhand_ros2_ws
 ```
 
 ### Manual Prerequisites
