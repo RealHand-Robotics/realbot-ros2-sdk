@@ -1,8 +1,29 @@
+import shlex
+import sys
 from glob import glob
+from pathlib import Path
 
 from setuptools import find_packages, setup
+from setuptools.command.test import test as TestCommand
 
 package_name = "realhand_ros2"
+
+
+class PytestCommand(TestCommand):
+    """Run the package's pytest suite through ``setup.py test``."""
+
+    user_options = [("pytest-args=", "a", "Arguments passed to pytest")]
+
+    def initialize_options(self) -> None:
+        super().initialize_options()
+        self.pytest_args = ""
+
+    def run_tests(self) -> None:
+        sys.path.insert(0, str(Path(__file__).parent / "src"))
+
+        import pytest
+
+        raise SystemExit(pytest.main(["test", *shlex.split(self.pytest_args)]))
 
 
 setup(
@@ -20,6 +41,8 @@ setup(
         ),
     ],
     install_requires=["setuptools", "realhand", "PyQt5"],
+    tests_require=["pytest"],
+    cmdclass={"test": PytestCommand},
     zip_safe=True,
     maintainer="realhand",
     maintainer_email="realhand@todo.todo",
