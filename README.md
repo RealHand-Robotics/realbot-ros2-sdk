@@ -59,13 +59,13 @@ Then use one of the following commands:
 
 ```bash
 # If ROS2 is already installed:
-bash ./install.sh --workspace ~/realhand_ros2_ws
+bash ./install.sh --workspace ~/realbot_ros2_ws
 
 # If ROS2 is not installed yet:
-bash ./install.sh --install-ros --workspace ~/realhand_ros2_ws
+bash ./install.sh --install-ros --workspace ~/realbot_ros2_ws
 
 # For optional A7 Lite kinetix support:
-bash ./install.sh --with-arm --workspace ~/realhand_ros2_ws
+bash ./install.sh --with-arm --workspace ~/realbot_ros2_ws
 ```
 
 The automated installer copies this repository into
@@ -75,8 +75,8 @@ the checkout does not require changing the installer. For a clean reinstall,
 remove the old workspace first:
 
 ```bash
-rm -rf ~/realhand_ros2_ws
-bash ./install.sh --install-ros --workspace ~/realhand_ros2_ws
+rm -rf ~/realbot_ros2_ws
+bash ./install.sh --install-ros --workspace ~/realbot_ros2_ws
 ```
 
 To keep the existing workspace, choose a different `--workspace` path instead.
@@ -85,13 +85,13 @@ The install script defaults to Humble on Ubuntu 22.04 and Jazzy on Ubuntu
 24.04. Override it explicitly when needed, for example:
 
 ```bash
-ROS_DISTRO=jazzy bash ./install.sh --install-ros --workspace ~/realhand_ros2_ws
+ROS_DISTRO=jazzy bash ./install.sh --install-ros --workspace ~/realbot_ros2_ws
 ```
 
 For local Python SDK development, use an editable checkout:
 
 ```bash
-bash ./install.sh --local-sdk /path/to/realbot-python-sdk --workspace ~/realhand_ros2_ws
+bash ./install.sh --local-sdk /path/to/realbot-python-sdk --workspace ~/realbot_ros2_ws
 ```
 
 ### Manual Prerequisites
@@ -155,8 +155,8 @@ python3 -m pip install git+https://github.com/RealHand-Robotics/realbot-python-s
 # python3 -m pip install -e /path/to/realbot-python-sdk
 
 # Clone the ROS 2 SDK into the workspace source directory.
-mkdir -p ~/realhand_ros2_ws/src
-cd ~/realhand_ros2_ws/src
+mkdir -p ~/realbot_ros2_ws/src
+cd ~/realbot_ros2_ws/src
 git clone https://github.com/RealHand-Robotics/realbot-ros2-sdk.git
 cd ..
 

@@ -42,7 +42,7 @@ Options:
 Examples:
   ./install.sh
   ./install.sh --install-ros
-  ./install.sh --install-ros --workspace ~/realhand_ros2_ws
+  ./install.sh --install-ros --workspace ~/realbot_ros2_ws
   ./install.sh --local-sdk ~/Downloads/realbot-python-sdk
 EOF
 }
@@ -256,7 +256,7 @@ copy_repo_to_workspace() {
     mkdir -p "${WORKSPACE}"
     workspace_dir="$(cd "${WORKSPACE}" && pwd)"
     if [[ "${workspace_dir}" == "/" || "${workspace_dir}" == "${HOME}" ]]; then
-        die "--workspace must be a dedicated workspace directory, for example ~/realhand_ros2_ws"
+        die "--workspace must be a dedicated workspace directory, for example ~/realbot_ros2_ws"
     fi
 
     dest="${workspace_dir}/src/${REPO_NAME}"
